@@ -26,8 +26,10 @@ export default class App extends Component {
       .then((res) => res.json())
       .catch((error) => console.error("Error:", error))
       .then((response) => {
-        this.setState({ data: response });
-        console.log("Success:", response);
+        if (response) {
+          this.setState({ data: response });
+          console.log("Success:", response);
+        }
       });
   }
   computeStyle = (type) => {
@@ -39,7 +41,7 @@ export default class App extends Component {
   };
 
   renderizarDatos = () => {
-    const {data} = this.state;
+    const { data } = this.state;
     if (data && data.length) {
       return data.map((element) => {
         return (
